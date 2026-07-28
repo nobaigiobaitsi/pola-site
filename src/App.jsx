@@ -1,0 +1,216 @@
+import { useState } from 'react'
+import { matches, players, results, stats, team } from './data/teamData'
+
+function Logo() {
+  return (
+    <a className="logo" href="#home" aria-label={`${team.name} home`}>
+      <span className="crest">{team.shortName}</span>
+      <span>
+        <strong>{team.name}</strong>
+        <small>Football Club</small>
+      </span>
+    </a>
+  )
+}
+
+function Header() {
+  const [open, setOpen] = useState(false)
+  const links = ['Squad', 'Matches', 'Story', 'Contact']
+
+  return (
+    <header className="site-header">
+      <div className="container nav-wrap">
+        <Logo />
+        <button
+          className="menu-button"
+          onClick={() => setOpen(!open)}
+          aria-expanded={open}
+          aria-label="Toggle navigation"
+        >
+          {open ? 'Close' : 'Menu'}
+        </button>
+        <nav className={open ? 'nav open' : 'nav'}>
+          {links.map((link) => (
+            <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setOpen(false)}>
+              {link}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </header>
+  )
+}
+
+function Hero() {
+  return (
+    <section className="hero" id="home">
+      <div className="hero-grid container">
+        <div className="hero-copy">
+          <p className="eyebrow">Established {team.founded} · {team.city}</p>
+          <h1>More than a team.<br /><span>Mostly a group chat.</span></h1>
+          <p className="hero-text">{team.description}</p>
+          <div className="hero-actions">
+            <a className="button primary" href="#matches">Next match</a>
+            <a className="button ghost" href="#squad">Meet the squad</a>
+          </div>
+        </div>
+
+        <div className="hero-card" aria-label="Team motto">
+          <div className="ball" aria-hidden="true">⚽</div>
+          <p>Our philosophy</p>
+          <blockquote>“{team.motto}”</blockquote>
+          <span>— The Times, probably</span>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Stats() {
+  return (
+    <section className="stats-band" aria-label="Team statistics">
+      <div className="container stats-grid">
+        {stats.map((stat) => (
+          <div className="stat" key={stat.label}>
+            <strong>{stat.value}</strong>
+            <span>{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function SectionTitle({ kicker, title, copy }) {
+  return (
+    <div className="section-heading">
+      <p className="eyebrow">{kicker}</p>
+      <h2>{title}</h2>
+      {copy && <p>{copy}</p>}
+    </div>
+  )
+}
+
+function Squad() {
+  return (
+    <section className="section" id="squad">
+      <div className="container">
+        <SectionTitle
+          kicker="The squad"
+          title="Heroes on some Sundays"
+        />
+        <div className="player-grid">
+          {players.map((player) => (
+            <article className="player-card" key={`${player.number}-${player.name}`}>
+              <span className="shirt-number">{player.number}</span>
+              <div className="player-avatar" aria-hidden="true">{player.name.charAt(0)}</div>
+              <p>{player.position}</p>
+              <h3>{player.name}</h3>
+              <span className="nickname">“{player.nickname}”</span>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Matches() {
+  return (
+    <section className="section section-dark" id="matches">
+      <div className="container match-layout">
+        <div>
+          <SectionTitle kicker="Upcoming" title="Fixtures" />
+          <div className="fixture-list">
+            {matches.map((match) => (
+              <article className="fixture" key={`${match.date}-${match.home}`}>
+                <div className="fixture-date"><strong>{match.date}</strong><span>{match.competition}</span></div>
+                <div className="teams"><span>{match.home}</span><b>vs</b><span>{match.away}</span></div>
+                <div className="kickoff"><strong>{match.time}</strong><span>{match.venue}</span></div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <aside className="results-card">
+          <p className="eyebrow">Recent form</p>
+          <h3>Last results</h3>
+          {results.map((result) => (
+            <div className="result" key={`${result.home}-${result.away}`}>
+              <span>{result.home}</span>
+              <strong>{result.homeScore} – {result.awayScore}</strong>
+              <span>{result.away}</span>
+            </div>
+          ))}
+          <div className="form"><span>W</span><span>D</span><span>W</span></div>
+        </aside>
+      </div>
+    </section>
+  )
+}
+
+function Story() {
+  return (
+    <section className="section" id="story">
+      <div className="container story-grid">
+        <div className="photo-placeholder">
+          <span>TEAM PHOTO</span>
+          <small>Add your image in /public and use it here</small>
+        </div>
+        <div>
+          <SectionTitle kicker="Our story" title="Built on friendship and late tackles" />
+          <p>We started with a ball, a rented pitch and barely enough players to avoid forfeiting. Since then, {team.name} has become the most entertaining football institution in {team.city}—at least according to us.</p>
+          <p>The objective is simple: play good football, enjoy every match and preserve enough energy for the post-game analysis.</p>
+          <div className="values">
+            <div><strong>01</strong><span>Teamwork</span></div>
+            <div><strong>02</strong><span>Respect</span></div>
+            <div><strong>03</strong><span>Entertainment</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Contact() {
+  return (
+    <section className="cta" id="contact">
+      <div className="container cta-inner">
+        <div>
+          <p className="eyebrow">Follow the campaign</p>
+          <h2>Join the supporters’ club.</h2>
+          <p>For friendlies, sponsorships or complaints about our defending.</p>
+        </div>
+        <a className="button light" href="mailto:team@example.com">team@example.com</a>
+      </div>
+    </section>
+  )
+}
+
+function Footer() {
+  return (
+    <footer>
+      <div className="container footer-inner">
+        <Logo />
+        <p>© {new Date().getFullYear()} {team.name}. No trophies were harmed in the making of this website.</p>
+      </div>
+    </footer>
+  )
+}
+
+export default function App() {
+  return (
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <Stats />
+        <Squad />
+        <Matches />
+        <Story />
+        <Contact />
+      </main>
+      <Footer />
+    </>
+  )
+}
