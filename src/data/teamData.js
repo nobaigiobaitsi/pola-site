@@ -12,7 +12,7 @@ export const team = {
     dark: '#071b12',
   },
   socials: {
-    instagram: '#',
+    instagram: 'https://www.instagram.com/pola.f.c?igsh=MWFxeGJmZ3pweHhwMQ==',
     facebook: '#',
     youtube: '#',
   },
@@ -20,15 +20,15 @@ export const team = {
 
 export const players = [
   { number: 1, name: 'Thanasis Voukelatos', position: 'Goalkeeper', nickname: 'The Wall' },
-  { number: 4, name: 'Georgiadis Giannis', position: 'Defender', nickname: 'No Nonsense' },
-  { number: 5, name: 'Aggelos Paisios', position: 'Defender', nickname: 'Air Traffic Control' },
-  { number: 8, name: 'Panagiotis Paisios', position: 'Midfielder', nickname: 'Three Lungs' },
-  { number: 10, name: 'Leonidas Leivaditis', position: 'Midfielder', nickname: 'The Architect' },
-  { number: 7, name: 'Giannis Athanasiou', position: 'Winger', nickname: 'Fast-ish' },
-  { number: 9, name: 'Stamatis Kapiris', position: 'Forward', nickname: 'One More Chance' },
-  { number: 11, name: 'Spyros Kapiris', position: 'Forward', nickname: 'Unpredictable' },
-  { number: 9, name: 'Giogros Ageridis', position: 'Forward', nickname: 'One More Chance' },
-  { number: 11, name: 'Angelopoulos Stavros', position: 'Forward', nickname: 'Unpredictable' },
+  { number: 80, name: 'Georgiadis Giannis', position: 'Defender', nickname: 'No Nonsense' },
+  { number: 17, name: 'Aggelos Paisios', position: 'Defender', nickname: 'Air Traffic Control' },
+  { number: 19, name: 'Panagiotis Paisios', position: 'Midfielder', nickname: 'Three Lungs' },
+  { number: 30, name: 'Leonidas Leivaditis', position: 'Midfielder', nickname: 'The Architect' },
+  { number: 9, name: 'Giannis Athanasiou', position: 'Winger', nickname: 'Fast-ish' },
+  { number: 99, name: 'Stamatis Kapiris', position: 'Forward', nickname: 'One More Chance' },
+  { number: 23, name: 'Spyros Kapiris', position: 'Forward', nickname: 'Unpredictable' },
+  { number: 10, name: 'Giogros Ageridis', position: 'Forward', nickname: 'The pistol' },
+  { number: 26, name: 'Angelopoulos Stavros', position: 'Forward', nickname: 'What am I doing here' },
 ]
 
 export const matches = [

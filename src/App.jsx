@@ -15,7 +15,7 @@ function Logo() {
 
 function Header() {
   const [open, setOpen] = useState(false)
-  const links = ['Squad', 'Matches', 'Story', 'Contact']
+  const links = ['Squad', 'Story', 'Contact']
 
   return (
     <header className="site-header">
@@ -50,7 +50,7 @@ function Hero() {
           <h1>More than a team.<br /><span>Mostly a group chat.</span></h1>
           <p className="hero-text">{team.description}</p>
           <div className="hero-actions">
-            <a className="button primary" href="#matches">Next match</a>
+            {/*<a className="button primary" href="#matches">Next match</a> */}
             <a className="button ghost" href="#squad">Meet the squad</a>
           </div>
         </div>
@@ -97,7 +97,7 @@ function Squad() {
       <div className="container">
         <SectionTitle
           kicker="The squad"
-          title="Heroes on some Sundays"
+          title="Heroes on some Days"
         />
         <div className="player-grid">
           {players.map((player) => (
@@ -155,7 +155,6 @@ function Story() {
       <div className="container story-grid">
         <div className="photo-placeholder">
           <span>TEAM PHOTO</span>
-          <small>Add your image in /public and use it here</small>
         </div>
         <div>
           <SectionTitle kicker="Our story" title="Built on friendship and late tackles" />
@@ -181,7 +180,9 @@ function Contact() {
           <h2>Join the supporters’ club.</h2>
           <p>For friendlies, sponsorships or complaints about our defending.</p>
         </div>
-        <a className="button light" href="mailto:team@example.com">team@example.com</a>
+        <a className="button light" href={team.socials.instagram} target="_blank" rel="noopener noreferrer">
+          P.OLA F.C.
+        </a>
       </div>
     </section>
   )
@@ -204,9 +205,9 @@ export default function App() {
       <Header />
       <main>
         <Hero />
-        <Stats />
+        {/*<Stats />*/}
         <Squad />
-        <Matches />
+        {/* <Matches /> */}
         <Story />
         <Contact />
       </main>
