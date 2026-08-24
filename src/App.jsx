@@ -59,7 +59,7 @@ function Hero() {
           <img className="hero-crest" src="/Images/Team_Logo.png" alt={`${team.name} Logo`} />
           <p>Our philosophy</p>
           <blockquote>“{team.motto}”</blockquote>
-          <span>— The Times, probably</span>
+          <span>- The Times, probably</span>
         </div>
       </div>
     </section>
@@ -158,8 +158,8 @@ function Story() {
         </div>
         <div>
           <SectionTitle kicker="Our story" title="Built on friendship and late tackles" />
-          <p>We started with a ball, a rented pitch and barely enough players to avoid forfeiting. Since then, {team.name} has become the most entertaining football institution in {team.city}—at least according to us.</p>
-          <p>The objective is simple: play good football, enjoy every match and preserve enough energy for the post-game analysis.</p>
+          <p>We started with a ball, a local tournament and barely enough players to avoid forfeiting. Since then, {team.name} has become the most entertaining football institution in {team.city}, at least according to us.</p>
+          <p>The objective is simple: play good football, enjoy every match and preserve enough energy for the post-game analysis(beer and food).</p>
           <div className="values">
             <div><strong>01</strong><span>Teamwork</span></div>
             <div><strong>02</strong><span>Respect</span></div>
@@ -178,7 +178,7 @@ function Contact() {
         <div>
           <p className="eyebrow">Follow the campaign</p>
           <h2>Join the supporters’ club.</h2>
-          <p>For friendlies, sponsorships or complaints about our defending.</p>
+          <p>For messages, sponsorships or complaints about our defending.</p>
         </div>
         <a className="button light" href={team.socials.instagram} target="_blank" rel="noopener noreferrer">
           P.OLA F.C.
