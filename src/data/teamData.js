@@ -28,7 +28,7 @@ export const players = [
   { number: 99, name: 'Stamatis Kapiris', position: 'Forward', nickname: 'One More Chance', image: '/Images/Stamatis_Kapiris.png' },
   { number: 23, name: 'Spyros Kapiris', position: 'Forward', nickname: 'Unpredictable', image: '/Images/Spyros_Kapiris.png' },
   { number: 10, name: 'Giorgos Ageridis', position: 'Forward', nickname: 'The Pistol', image: '/Images/Giorgos_Ageridis.png' },
-  { number: 26, name: 'Stavros Angelopoulos', position: 'Forward', nickname: 'How did I get here' },
+  { number: 26, name: 'Stavros Angelopoulos', position: 'Forward', nickname: 'How did I get here', image: '/Images/Stavros_Angelopoulos.png' },
 ]
 
 export const matches = [
