@@ -19,16 +19,16 @@ export const team = {
 }
 
 export const players = [
-  { number: 1, name: 'Thanasis Voukelatos', position: 'Goalkeeper', nickname: 'The Wall' },
+  { number: 1, name: 'Thanasis Voukelatos', position: 'Goalkeeper', nickname: 'The Wall', image: '/Images/Thanasis_Voukelatos.png'},
   { number: 80, name: 'Georgiadis Giannis', position: 'Defender', nickname: 'No Nonsense' },
   { number: 17, name: 'Aggelos Paisios', position: 'Defender', nickname: 'Air Traffic Control' },
   { number: 19, name: 'Panagiotis Paisios', position: 'Midfielder', nickname: 'The Architect' },
-  { number: 30, name: 'Leonidas Leivaditis', position: 'Midfielder', nickname: 'Three Lungs' },
-  { number: 9, name: 'Giannis Athanasiou', position: 'Winger', nickname: 'Fast-ish' },
-  { number: 99, name: 'Stamatis Kapiris', position: 'Forward', nickname: 'One More Chance' },
-  { number: 23, name: 'Spyros Kapiris', position: 'Forward', nickname: 'Unpredictable' },
-  { number: 10, name: 'Giogros Ageridis', position: 'Forward', nickname: 'The pistol' },
-  { number: 26, name: 'Angelopoulos Stavros', position: 'Forward', nickname: 'What am I doing here' },
+  { number: 30, name: 'Leonidas Leivaditis', position: 'Midfielder', nickname: 'Three Lungs', image: '/Images/Leonidas_Leivaditis.png' },
+  { number: 9, name: 'Giannis Athanasiou', position: 'Winger', nickname: 'Fast-ish', image: '/Images/Giannis_Athanasiou.png' },
+  { number: 99, name: 'Stamatis Kapiris', position: 'Forward', nickname: 'One More Chance', image: '/Images/Stamatis_Kapiris.png' },
+  { number: 23, name: 'Spyros Kapiris', position: 'Forward', nickname: 'Unpredictable', image: '/Images/Spyros_Kapiris.png' },
+  { number: 10, name: 'Giorgos Ageridis', position: 'Forward', nickname: 'The Pistol', image: '/Images/Giorgos_Ageridis.png' },
+  { number: 26, name: 'Stavros Angelopoulos', position: 'Forward', nickname: 'How did I get here' },
 ]
 
 export const matches = [

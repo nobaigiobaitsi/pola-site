@@ -97,19 +97,25 @@ function Squad() {
       <div className="container">
         <SectionTitle
           kicker="The squad"
-          title="Heroes on some Days"
+          title="Heroes on Some Days"
         />
         <div className="player-grid">
           {players.map((player) => (
-            <article className="player-card" key={`${player.number}-${player.name}`}>
-              <span className="shirt-number">{player.number}</span>
-              <div className="player-avatar" aria-hidden="true">{player.name.charAt(0)}</div>
-              <p>{player.position}</p>
-              <h3>{player.name}</h3>
-              <span className="nickname">“{player.nickname}”</span>
-            </article>
-          ))}
-        </div>
+              <article className="player-card" key={`${player.number}-${player.name}`}>
+                    <span className="shirt-number">{player.number}</span>
+                        <div className="player-avatar">
+                          {player.image ? (
+                            <img src={player.image} alt={player.name} />
+                            ) : (
+                            <span>{player.name.charAt(0)}</span>
+                          )}
+                        </div>
+                        <p>{player.position}</p>
+                        <h3>{player.name}</h3>
+                        <span className="nickname">“{player.nickname}”</span>
+                        </article>
+                      ))}
+          </div>
       </div>
     </section>
   )
@@ -181,7 +187,7 @@ function Contact() {
           <p>For messages, sponsorships or complaints about our defending.</p>
         </div>
         <a className="button light" href={team.socials.instagram} target="_blank" rel="noopener noreferrer">
-          P.OLA F.C.
+          Instagram
         </a>
       </div>
     </section>
