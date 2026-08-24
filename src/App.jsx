@@ -4,7 +4,7 @@ import { matches, players, results, stats, team } from './data/teamData'
 function Logo() {
   return (
     <a className="logo" href="#home" aria-label={`${team.name} home`}>
-      <span className="crest">{team.shortName}</span>
+      <img className="crest-image" src="/Images/Team_Logo.png" alt={`${team.name} Logo`} />
       <span>
         <strong>{team.name}</strong>
         <small>Football Club</small>
@@ -56,7 +56,7 @@ function Hero() {
         </div>
 
         <div className="hero-card" aria-label="Team motto">
-          <div className="ball" aria-hidden="true">⚽</div>
+          <img className="hero-crest" src="/Images/Team_Logo.png" alt={`${team.name} Logo`} />
           <p>Our philosophy</p>
           <blockquote>“{team.motto}”</blockquote>
           <span>— The Times, probably</span>
@@ -153,8 +153,8 @@ function Story() {
   return (
     <section className="section" id="story">
       <div className="container story-grid">
-        <div className="photo-placeholder">
-          <span>TEAM PHOTO</span>
+        <div className="story-photo">
+            <img src="/Images/Team_Photo_All_Players.jpg"  alt={`${team.name} - All Players`} />
         </div>
         <div>
           <SectionTitle kicker="Our story" title="Built on friendship and late tackles" />
