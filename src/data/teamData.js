@@ -20,7 +20,7 @@ export const team = {
 
 export const players = [
   { number: 1, name: 'Thanasis Voukelatos', position: 'Goalkeeper', nickname: 'The Wall', image: '/Images/Thanasis_Voukelatos.png'},
-  { number: 80, name: 'Georgiadis Giannis', position: 'Defender', nickname: 'No Nonsense' },
+  { number: 80, name: 'Giannis Georgiadis', position: 'Defender', nickname: 'No Nonsense' },
   { number: 17, name: 'Aggelos Paisios', position: 'Defender', nickname: 'Air Traffic Control' },
   { number: 19, name: 'Panagiotis Paisios', position: 'Midfielder', nickname: 'The Architect' },
   { number: 30, name: 'Leonidas Leivaditis', position: 'Midfielder', nickname: 'Three Lungs', image: '/Images/Leonidas_Leivaditis.png' },
