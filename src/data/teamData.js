@@ -18,6 +18,14 @@ export const team = {
   },
 }
 
+// Sponsor details: replace the name and add the supplied company logo before publishing.
+// Put the logo in public/Images/ and use its path below, e.g. '/Images/Sponsor_Logo.png'.
+export const sponsor = {
+  name: 'Alpha Consultants',
+  logo: '/Images/AlphaConsultants.png',
+  comment: 'They believed in us. Then they saw us perform.',
+}
+
 export const players = [
   { number: 1, name: 'Thanasis Voukelatos', position: 'Goalkeeper', nickname: 'The Wall', image: '/Images/Thanasis_Voukelatos.png'},
   { number: 80, name: 'Giannis Georgiadis', position: 'Defender', nickname: 'No Nonsense' },

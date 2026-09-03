@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { matches, players, results, stats, team } from './data/teamData'
+import { matches, players, results, sponsor, stats, team } from './data/teamData'
 
 function Logo() {
   return (
@@ -15,7 +15,7 @@ function Logo() {
 
 function Header() {
   const [open, setOpen] = useState(false)
-  const links = ['Squad', 'Story', 'Contact']
+  const links = ['Squad', 'Story', 'Sponsor', 'Contact']
 
   return (
     <header className="site-header">
@@ -177,6 +177,43 @@ function Story() {
   )
 }
 
+function Sponsor() {
+  const [failedLogo, setFailedLogo] = useState(null)
+  const hasLogo = sponsor.logo && failedLogo !== sponsor.logo
+
+  return (
+    <section className="section section-dark sponsor-section" id="sponsor" aria-labelledby="sponsor-heading">
+      <div className="container sponsor-grid">
+        <div className="sponsor-intro">
+          <div className="section-heading">
+            <p className="eyebrow">Our sponsor</p>
+            <h2 id="sponsor-heading">Part of the team.<br /><span>Spared the running.</span></h2>
+          </div>
+          <p className="sponsor-comment">{sponsor.comment}</p>
+        </div>
+        <article className="sponsor-card" aria-labelledby="sponsor-name">
+          <div className="sponsor-logo">
+            {hasLogo ? (
+              <img
+                src={sponsor.logo}
+                alt={`${sponsor.name} logo`}
+                loading="lazy"
+                onError={() => setFailedLogo(sponsor.logo)}
+              />
+            ) : (
+              <span className="sponsor-logo-placeholder">{sponsor.logo ? sponsor.name : 'Company logo'}</span>
+            )}
+          </div>
+          <div className="sponsor-details">
+            <p className="eyebrow">Official sponsor</p>
+            <h3 id="sponsor-name">{sponsor.name}</h3>
+          </div>
+        </article>
+      </div>
+    </section>
+  )
+}
+
 function Contact() {
   return (
     <section className="cta" id="contact">
@@ -215,6 +252,7 @@ export default function App() {
         <Squad />
         {/* <Matches /> */}
         <Story />
+        <Sponsor />
         <Contact />
       </main>
       <Footer />
