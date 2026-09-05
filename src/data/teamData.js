@@ -78,3 +78,11 @@ export const stats = [
   { value: '12', label: 'Clean sheets claimed' },
   { value: '100%', label: 'Passion' },
 ]
+
+export const mvp = {
+  name: 'Stavros Angelopoulos',
+  number: 26,
+  position: 'Forward · Website Developer',
+  image: '/Images/Stavros_Angelopoulos.png',
+  comment: 'The votes were counted by the same person who built the website... Allegedly.',
+}

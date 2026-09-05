@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { matches, players, results, sponsor, stats, team } from './data/teamData'
+import { matches, players, mvp, results, sponsor, stats, team } from './data/teamData'
 
 function Logo() {
   return (
@@ -15,7 +15,7 @@ function Logo() {
 
 function Header() {
   const [open, setOpen] = useState(false)
-  const links = ['Squad', 'Story', 'Sponsor', 'Contact']
+  const links = ['Squad', 'MVP', 'Story', 'Sponsor', 'Contact']
 
   return (
     <header className="site-header">
@@ -116,6 +116,42 @@ function Squad() {
                         </article>
                       ))}
           </div>
+      </div>
+    </section>
+  )
+}
+
+function MVP() {
+  return (
+    <section
+      className="section section-dark mvp-section"
+      id="mvp"
+      aria-labelledby="mvp-heading"
+    >
+      <div className="container">
+        <SectionTitle
+          kicker="Player of the season"
+          title="A completely unbiased decision"
+        />
+
+        <article className="mvp-card">
+          <div className="mvp-photo">
+            <img src={mvp.image} alt={`${mvp.name}, team MVP`} />
+            <span className="mvp-number">#{mvp.number}</span>
+          </div>
+
+          <div className="mvp-details">
+            <p className="eyebrow">Official MVP</p>
+            <h3 id="mvp-heading">{mvp.name}</h3>
+            <p className="mvp-position">{mvp.position}</p>
+
+            <blockquote>“{mvp.comment}”</blockquote>
+
+            <span className="mvp-source">
+              - The totally independent selection committee
+            </span>
+          </div>
+        </article>
       </div>
     </section>
   )
@@ -250,6 +286,7 @@ export default function App() {
         <Hero />
         {/*<Stats />*/}
         <Squad />
+        <MVP />
         {/* <Matches /> */}
         <Story />
         <Sponsor />
