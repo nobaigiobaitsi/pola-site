@@ -29,12 +29,12 @@ export const sponsor = {
 export const players = [
   { number: 1, name: 'Thanasis Voukelatos', position: 'Goalkeeper', nickname: 'The Wall', image: '/Images/Thanasis_Voukelatos.png'},
   { number: 80, name: 'Giannis Georgiadis', position: 'Defender', nickname: 'No Nonsense' },
-  { number: 17, name: 'Aggelos Paisios', position: 'Right Midfielder', nickname: 'Air Traffic Control' },
-  { number: 19, name: 'Panagiotis Paisios', position: 'Defender', nickname: 'The Architect' },
-  { number: 30, name: 'Leonidas Leivaditis', position: 'Left Midfielder', nickname: 'Three Lungs', image: '/Images/Leonidas_Leivaditis.png' },
-  { number: 9, name: 'Giannis Athanasiou', position: 'Centre Midfielder', nickname: 'Fast-ish', image: '/Images/Giannis_Athanasiou.png' },
-  { number: 99, name: 'Stamatis Kapiris', position: 'Forward', nickname: 'One More Chance', image: '/Images/Stamatis_Kapiris.png' },
   { number: 23, name: 'Spyros Kapiris', position: 'Defender', nickname: 'Unpredictable', image: '/Images/Spyros_Kapiris.png' },
+  { number: 19, name: 'Panagiotis Paisios', position: 'Defender', nickname: 'The Architect' },
+  { number: 17, name: 'Aggelos Paisios', position: 'Right Midfielder', nickname: 'Air Traffic Control' },
+  { number: 9, name: 'Giannis Athanasiou', position: 'Centre Midfielder', nickname: 'Fast-ish', image: '/Images/Giannis_Athanasiou.png' },
+  { number: 30, name: 'Leonidas Leivaditis', position: 'Left Midfielder', nickname: 'Three Lungs', image: '/Images/Leonidas_Leivaditis.png' },
+  { number: 99, name: 'Stamatis Kapiris', position: 'Forward', nickname: 'One More Chance', image: '/Images/Stamatis_Kapiris.png' },
   { number: 10, name: 'Giorgos Ageridis', position: 'Centre Forward', nickname: 'The Pistol', image: '/Images/Giorgos_Ageridis.png' },
   { number: 26, name: 'Stavros Angelopoulos', position: 'Forward', nickname: 'How did I get here', image: '/Images/Stavros_Angelopoulos.png' },
 ]
