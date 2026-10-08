@@ -8,7 +8,7 @@ Alpha Consultants.
 
 **[Visit the website →](https://www.polafc.com/)**
 
-![P.OLA F.C. team](public/Images/Team_Photo_All_Players.jpg)
+![P.OLA F.C. team](public/Images/Team_Photo_All_Players.webp)
 
 Built with React, Vite, and CSS. Responsive design for desktop and mobile.
 

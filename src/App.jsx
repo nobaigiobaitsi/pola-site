@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { matches, players, mvp, results, sponsor, stats, team } from './data/teamData'
+import MatchesPage from './components/MatchesPage'
 
 function Logo() {
   return (
@@ -15,7 +16,7 @@ function Logo() {
 
 function Header() {
   const [open, setOpen] = useState(false)
-  const links = ['Squad', 'MVP', 'Story', 'Sponsor', 'Contact']
+  const links = ['Home', 'Matches', 'Squad', 'MVP', 'Story', 'Sponsor', 'Contact']
 
   return (
     <header className="site-header">
@@ -50,7 +51,9 @@ function Hero() {
           <h1>More than a team.<br /><span>Mostly a group chat.</span></h1>
           <p className="hero-text">{team.description}</p>
           <div className="hero-actions">
-            {/*<a className="button primary" href="#matches">Next match</a> */}
+            <a className="button primary" href="#matches">
+              Scores &amp; stories
+            </a>
             <a className="button ghost" href="#squad">Meet the squad</a>
           </div>
         </div>
@@ -196,7 +199,7 @@ function Story() {
     <section className="section" id="story">
       <div className="container story-grid">
         <div className="story-photo">
-            <img src="/Images/Team_Photo_All_Players.jpg"  alt={`${team.name} - All Players`} />
+            <img src="/Images/Team_Photo_All_Players.webp"  alt={`${team.name} - All Players`} />
         </div>
         <div>
           <SectionTitle kicker="Our story" title="Built on friendship and late tackles" />
@@ -279,18 +282,55 @@ function Footer() {
 }
 
 export default function App() {
+  const [hash, setHash] = useState(
+    () => window.location.hash || '#home'
+  )
+  const isMatchesPage = hash === '#matches'
+
+  useEffect(() => {
+    const onHashChange = () =>
+      setHash(window.location.hash || '#home')
+
+    window.addEventListener('hashchange', onHashChange)
+
+    return () =>
+      window.removeEventListener('hashchange', onHashChange)
+  }, [])
+
+  useEffect(() => {
+    document.title = isMatchesPage
+      ? `Matches & Scorers | ${team.name}`
+      : team.name
+
+    const frame = window.requestAnimationFrame(() => {
+      if (isMatchesPage) {
+        window.scrollTo({ top: 0, behavior: 'instant' })
+      } else {
+        document
+          .getElementById(hash.slice(1) || 'home')
+          ?.scrollIntoView({ block: 'start' })
+      }
+    })
+
+    return () => window.cancelAnimationFrame(frame)
+  }, [hash, isMatchesPage])
+
   return (
     <>
       <Header />
       <main>
-        <Hero />
-        {/*<Stats />*/}
-        <Squad />
-        <MVP />
-        {/* <Matches /> */}
-        <Story />
-        <Sponsor />
-        <Contact />
+        {isMatchesPage ? (
+          <MatchesPage />
+        ) : (
+          <>
+            <Hero />
+            <Squad />
+            <MVP />
+            <Story />
+            <Sponsor />
+            <Contact />
+          </>
+        )}
       </main>
       <Footer />
     </>
