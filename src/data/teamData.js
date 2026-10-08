@@ -18,25 +18,23 @@ export const team = {
   },
 }
 
-// Sponsor details: replace the name and add the supplied company logo before publishing.
-// Put the logo in public/Images/ and use its path below, e.g. '/Images/Sponsor_Logo.png'.
 export const sponsor = {
   name: 'Alpha Consultants',
-  logo: '/Images/AlphaConsultants.png',
+  logo: '/Images/AlphaConsultants.webp',
   comment: 'They believed in us. Then they saw us perform.',
 }
 
 export const players = [
-  { number: 1, name: 'Thanasis Voukelatos', position: 'Goalkeeper', nickname: 'The Wall', image: '/Images/Thanasis_Voukelatos.png'},
-  { number: 80, name: 'Giannis Georgiadis', position: 'Defender', nickname: 'No Nonsense', image: '/Images/Giannis_Georgiadis.png' },
-  { number: 23, name: 'Spyros Kapiris', position: 'Defender', nickname: 'Unpredictable', image: '/Images/Spyros_Kapiris.png' },
-  { number: 19, name: 'Panagiotis Paisios', position: 'Defender', nickname: 'The Architect', image: '/Images/Panagiotis_Paisios.png' },
-  { number: 17, name: 'Aggelos Paisios', position: 'Right Midfielder', nickname: 'Air Traffic Control', image: '/Images/Aggelos_Paisios.png' },
-  { number: 9, name: 'Giannis Athanasiou', position: 'Centre Midfielder', nickname: 'Fast-ish', image: '/Images/Giannis_Athanasiou.png' },
-  { number: 30, name: 'Leonidas Leivaditis', position: 'Left Midfielder', nickname: 'Three Lungs', image: '/Images/Leonidas_Leivaditis.png' },
-  { number: 99, name: 'Stamatis Kapiris', position: 'Forward', nickname: 'One More Chance', image: '/Images/Stamatis_Kapiris.png' },
-  { number: 10, name: 'Giorgos Ageridis', position: 'Centre Forward', nickname: 'The Pistol', image: '/Images/Giorgos_Ageridis.png' },
-  { number: 26, name: 'Stavros Angelopoulos', position: 'Forward', nickname: 'How did I get here', image: '/Images/Stavros_Angelopoulos.png' },
+  { number: 1, name: 'Thanasis Voukelatos', position: 'Goalkeeper', nickname: 'The Wall', image: '/Images/Thanasis_Voukelatos.webp'},
+  { number: 80, name: 'Giannis Georgiadis', position: 'Defender', nickname: 'No Nonsense', image: '/Images/Giannis_Georgiadis.webp' },
+  { number: 23, name: 'Spyros Kapiris', position: 'Defender', nickname: 'Unpredictable', image: '/Images/Spyros_Kapiris.webp' },
+  { number: 19, name: 'Panagiotis Paisios', position: 'Defender', nickname: 'The Architect', image: '/Images/Panagiotis_Paisios.webp' },
+  { number: 17, name: 'Aggelos Paisios', position: 'Right Midfielder', nickname: 'Air Traffic Control', image: '/Images/Aggelos_Paisios.webp' },
+  { number: 9, name: 'Giannis Athanasiou', position: 'Centre Midfielder', nickname: 'Fast-ish', image: '/Images/Giannis_Athanasiou.webp' },
+  { number: 30, name: 'Leonidas Leivaditis', position: 'Left Midfielder', nickname: 'Three Lungs', image: '/Images/Leonidas_Leivaditis.webp' },
+  { number: 99, name: 'Stamatis Kapiris', position: 'Forward', nickname: 'One More Chance', image: '/Images/Stamatis_Kapiris.webp' },
+  { number: 10, name: 'Giorgos Ageridis', position: 'Centre Forward', nickname: 'The Pistol', image: '/Images/Giorgos_Ageridis.webp' },
+  { number: 26, name: 'Stavros Angelopoulos', position: 'Forward', nickname: 'How did I get here', image: '/Images/Stavros_Angelopoulos.webp' },
 ]
 
 export const matches = [
@@ -83,6 +81,6 @@ export const mvp = {
   name: 'Stavros Angelopoulos',
   number: 26,
   position: 'Forward · Website Developer',
-  image: '/Images/Stavros_Angelopoulos.png',
+  image: '/Images/Stavros_Angelopoulos.webp',
   comment: 'The votes were counted by the same person who built the website... Allegedly.',
 }
