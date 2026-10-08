@@ -31,7 +31,7 @@ export const matches = [
             { name: 'Leonidas Leivaditis', goals: 1 },
         ],
     ownGoals: 0, // Opposition own goals scored into their own net
-    note: 'A tactical masterclass. According to the group chat.',
+    note: 'They called themselves unlucky. We respected the branding.',
     },
     {
     id: 'match-002',
@@ -47,7 +47,7 @@ export const matches = [
             { name: 'Siozos Thodoris', goals: 1 },
         ],
     ownGoals: 0, // Opposition own goals scored into their own net
-    note: 'A tactical masterclass. According to the group chat.',
+    note: 'The Kings kept the name. We kept the win.',
     },
     {
     id: 'match-003',
@@ -62,7 +62,7 @@ export const matches = [
             { name: 'Panagiotis Paisios', goals: 1 },
         ],
     ownGoals: 1, // Opposition own goals scored into their own net
-    note: 'A tactical masterclass. According to the group chat.',
+    note: 'They scored at both ends. We appreciate the flexibility.',
     },
 ]
 
