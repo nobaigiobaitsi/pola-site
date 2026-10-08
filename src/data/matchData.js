@@ -20,7 +20,7 @@ export const matches = [
         date: '2026-09-22',
         season: '2026/27',
         competition: 'Friendly',
-        opponent: 'Opponent FC',
+        opponent: 'Άτυχοι',
         goalsFor: 6, //P.OLA's goals 
         goalsAgainst: 2, //Opposition goals
         scorers: [
@@ -38,7 +38,7 @@ export const matches = [
         date: '2026-09-29',
         season: '2026/27',
         competition: 'Friendly',
-        opponent: 'Opponent FC',
+        opponent: 'Kings',
         goalsFor: 3, //P.OLA's goals 
         goalsAgainst: 2, //Opposition goals
         scorers: [
@@ -54,7 +54,7 @@ export const matches = [
         date: '2026-10-06',
         season: '2026/27',
         competition: 'Friendly',
-        opponent: 'Opponent FC',
+        opponent: 'Los Palteiros',
         goalsFor: 3, //P.OLA's goals 
         goalsAgainst: 3, //Opposition goals
         scorers: [
