@@ -422,7 +422,7 @@ footer .logo strong { font-size: 1rem; }
 .match-score small { grid-column: 1 / -1; margin-top: 2px; text-align: center; font: 700 .52rem/1.4 Inter, sans-serif; text-transform: uppercase; letter-spacing: .18em; color: #788477; }
 .match-scorers { padding: 0 22px 20px; }
 .scorers-label { margin: 0 0 12px; font-size: .57rem; letter-spacing: .12em; font-weight: 800; text-transform: uppercase; color: #68776c; }
-.scorer-chips { list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap; }
+.scorer-chips { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
 .scorer-chips li { display: flex; align-items: center; gap: 8px; min-width: 0; padding: 8px 10px; border: 1px solid #e0e7db; background: #f2f5ee; font-size: .69rem; line-height: 1.45; }
 .scorer-chips li > span:not(.scorer-shirt) { overflow-wrap: anywhere; }
 .scorer-shirt { color: #6c7b70; font-size: .6rem; }
