@@ -19,7 +19,7 @@ export const matches = [
     id: 'match-001',
         date: '2026-09-22',
         season: '2026/27',
-        competition: 'Friendly',
+        competition: 'Winter Tournament 2026/27',
         opponent: 'Άτυχοι',
         goalsFor: 6, //P.OLA's goals 
         goalsAgainst: 2, //Opposition goals
@@ -37,7 +37,7 @@ export const matches = [
     id: 'match-002',
         date: '2026-09-29',
         season: '2026/27',
-        competition: 'Friendly',
+        competition: 'Winter Tournament 2026/27',
         opponent: 'Kings',
         goalsFor: 3, //P.OLA's goals 
         goalsAgainst: 2, //Opposition goals
@@ -53,7 +53,7 @@ export const matches = [
     id: 'match-003',
         date: '2026-10-06',
         season: '2026/27',
-        competition: 'Friendly',
+        competition: 'Winter Tournament 2026/27',
         opponent: 'Los Palteiros',
         goalsFor: 3, //P.OLA's goals 
         goalsAgainst: 3, //Opposition goals
