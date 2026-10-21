@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { matches, players, mvp, results, sponsor, stats, team } from './data/teamData'
+import { players, mvp, sponsor, team } from './data/teamData'
 import MatchesPage from './components/MatchesPage'
 
 function Logo() {
@@ -64,21 +64,6 @@ function Hero() {
           <blockquote>“{team.motto}”</blockquote>
           <span>- The Times, probably</span>
         </div>
-      </div>
-    </section>
-  )
-}
-
-function Stats() {
-  return (
-    <section className="stats-band" aria-label="Team statistics">
-      <div className="container stats-grid">
-        {stats.map((stat) => (
-          <div className="stat" key={stat.label}>
-            <strong>{stat.value}</strong>
-            <span>{stat.label}</span>
-          </div>
-        ))}
       </div>
     </section>
   )
@@ -155,40 +140,6 @@ function MVP() {
             </span>
           </div>
         </article>
-      </div>
-    </section>
-  )
-}
-
-function Matches() {
-  return (
-    <section className="section section-dark" id="matches">
-      <div className="container match-layout">
-        <div>
-          <SectionTitle kicker="Upcoming" title="Fixtures" />
-          <div className="fixture-list">
-            {matches.map((match) => (
-              <article className="fixture" key={`${match.date}-${match.home}`}>
-                <div className="fixture-date"><strong>{match.date}</strong><span>{match.competition}</span></div>
-                <div className="teams"><span>{match.home}</span><b>vs</b><span>{match.away}</span></div>
-                <div className="kickoff"><strong>{match.time}</strong><span>{match.venue}</span></div>
-              </article>
-            ))}
-          </div>
-        </div>
-
-        <aside className="results-card">
-          <p className="eyebrow">Recent form</p>
-          <h3>Last results</h3>
-          {results.map((result) => (
-            <div className="result" key={`${result.home}-${result.away}`}>
-              <span>{result.home}</span>
-              <strong>{result.homeScore} – {result.awayScore}</strong>
-              <span>{result.away}</span>
-            </div>
-          ))}
-          <div className="form"><span>W</span><span>D</span><span>W</span></div>
-        </aside>
       </div>
     </section>
   )
