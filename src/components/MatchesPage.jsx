@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { matches} from '../data/matchData.js'
+import { matches, demoMatches } from '../data/matchData.js'
 import { players, team } from '../data/teamData.js'
 
 function getOutcome(match) {
@@ -33,7 +33,7 @@ function formatMatchDate(value) {
 }
 
 function getMatchStats(matches) {
-  return matches.reduce((totals, match) => {
+  const totals = matches.reduce((totals, match) => {
     const outcome = getOutcome(match)
 
     totals.played += 1
@@ -54,6 +54,20 @@ function getMatchStats(matches) {
     goalsAgainst: 0,
     cleanSheets: 0,
   })
+
+  let unbeatenRun = 0
+  for (const match of sortMatches(matches)) {
+    if (getOutcome(match) === 'L') break
+    unbeatenRun += 1
+  }
+
+  return {
+    ...totals,
+    goalDifference: totals.goalsFor - totals.goalsAgainst,
+    winRate: totals.played ? Math.round(totals.wins / totals.played * 100) : 0,
+    goalsPerMatch: totals.played ? totals.goalsFor / totals.played : 0,
+    unbeatenRun,
+  }
 }
 
 function getScorerLeaderboard(matches) {
@@ -121,56 +135,45 @@ function MatchCard({ match }) {
   )
   const uncreditedGoals = Math.max(0, match.goalsFor - recordedGoals)
 
-  function MatchTeam({ ours }) {
-    return (
-      <div className={`score-team${ours ? ' score-team-ours' : ''}`}>
-        <div className="score-team-crest" aria-hidden="true">
-          {ours
-            ? <img src="/Images/Team_Logo_Transparent.webp" alt="" />
-            : <span>VS</span>}
-        </div>
-        <strong>{ours ? team.name : match.opponent}</strong>
-      </div>
-    )
-  }
-
   return (
     <article
       className={`match-card match-card-${outcome.toLowerCase()}`}
       aria-label={`${team.name} ${match.goalsFor}, ${match.opponent} ${match.goalsAgainst}: ${outcomeLabels[outcome]}`}
     >
-      <div className="match-card-meta">
-        <div>
-          <span>{match.competition || 'Match report'}</span>
-          {day && (
-            <>
-              <span className="meta-dot" aria-hidden="true">·</span>
-              <time dateTime={match.date}>{day}</time>
-            </>
-          )}
-        </div>
+      <header className="match-card-meta">
+        {day && <time dateTime={match.date}>{day}</time>}
+        <span className="match-competition">
+          {match.competition || 'Match report'}
+        </span>
         <span className={`outcome-badge outcome-${outcome.toLowerCase()}`}>
+          <span className="outcome-dot" aria-hidden="true" />
           {outcomeLabels[outcome]}
         </span>
-      </div>
+      </header>
 
       <div className="match-scoreboard">
-        <MatchTeam ours />
+        <div className="score-team score-team-ours">
+          <img src="/Images/Team_Logo_Transparent.webp" alt="" />
+          <strong>{team.name}</strong>
+        </div>
 
         <div className="match-score" aria-hidden="true">
-            <span>{match.goalsFor}</span>
-            <span className="score-dash">–</span>
-            <span>{match.goalsAgainst}</span>
-            <small>Full time</small>
+          <span>{match.goalsFor}</span>
+          <span className="score-dash">–</span>
+          <span>{match.goalsAgainst}</span>
+          <small>Full time</small>
         </div>
-        <MatchTeam ours={false} />
+
+        <div className="score-team score-team-opponent">
+          <strong>{match.opponent}</strong>
         </div>
+      </div>
 
       <div className="match-scorers">
-        <p className="scorers-label">On our scoresheet</p>
+        <p className="scorers-label">P.OLA scorers</p>
 
         {scorers.length > 0 || ownGoals > 0 ? (
-          <ul className="scorer-chips">
+          <ul className="match-scorer-list" aria-label="P.OLA goalscorers">
             {scorers.map((scorer, index) => {
               const player = players.find(
                 (member) => member.name === scorer.name
@@ -178,16 +181,18 @@ function MatchCard({ match }) {
 
               return (
                 <li key={`${scorer.name}-${index}`}>
-                  {player && (
+                  <span className="scorer-name">
                     <span
                       className="scorer-shirt"
-                      aria-label={`Shirt number ${player.number}`}
+                      aria-label={player ? `Shirt number ${player.number}` : undefined}
+                      aria-hidden={player ? undefined : true}
                     >
-                      #{player.number}
+                      {player?.number}
                     </span>
-                  )}
-                  <span>{scorer.name}</span>
+                    <span>{scorer.name}</span>
+                  </span>
                   <strong
+                    className="scorer-tally"
                     aria-label={`${scorer.goals} ${scorer.goals === 1 ? 'goal' : 'goals'}`}
                   >
                     ×{scorer.goals}
@@ -197,9 +202,17 @@ function MatchCard({ match }) {
             })}
 
             {ownGoals > 0 && (
-              <li className="own-goal-chip">
-                <span>Opposition own goal</span>
-                <strong>×{ownGoals}</strong>
+              <li className="opposition-own-goal">
+                <span className="scorer-name">
+                  <span className="scorer-shirt" aria-hidden="true" />
+                  <span>Opposition own goal</span>
+                </span>
+                <strong
+                  className="scorer-tally"
+                  aria-label={`${ownGoals} ${ownGoals === 1 ? 'goal' : 'goals'}`}
+                >
+                  ×{ownGoals}
+                </strong>
               </li>
             )}
           </ul>
@@ -220,10 +233,9 @@ function MatchCard({ match }) {
         )}
       </div>
 
-      <p className="match-verdict">
-        <span aria-hidden="true">“</span>
-        {match.note || matchVerdicts[outcome]}
-      </p>
+      <footer className="match-verdict">
+        <p>{match.note || matchVerdicts[outcome]}</p>
+      </footer>
     </article>
   )
 }
@@ -360,6 +372,49 @@ function RecentForm({ matches }) {
         {recent.length > 0
           ? 'Oldest → newest. Opinions → unlimited.'
           : 'Results pending. Confidence suspiciously high.'}
+      </p>
+    </aside>
+  )
+}
+
+function SeasonInsights({ matches }) {
+  const stats = getMatchStats(matches)
+  const hasMatches = stats.played > 0
+  const difference = stats.goalDifference > 0
+    ? `+${stats.goalDifference}`
+    : String(stats.goalDifference)
+
+  return (
+    <aside className="season-insights" aria-labelledby="insights-heading">
+      <p className="eyebrow">Season totals</p>
+      <h2 id="insights-heading">Beyond the score.</h2>
+      <dl className="season-metrics">
+        <div>
+          <dt>Win rate</dt>
+          <dd>{hasMatches ? `${stats.winRate}%` : '—'}</dd>
+        </div>
+        <div>
+          <dt>Goal difference</dt>
+          <dd>{hasMatches ? difference : '—'}</dd>
+        </div>
+        <div>
+          <dt>Goals / game</dt>
+          <dd>{hasMatches ? stats.goalsPerMatch.toFixed(1) : '—'}</dd>
+        </div>
+        <div>
+          <dt>Unbeaten run</dt>
+          <dd>
+            {hasMatches ? stats.unbeatenRun : '—'}
+            {hasMatches && (
+              <small>{' '}{stats.unbeatenRun === 1 ? 'game' : 'games'}</small>
+            )}
+          </dd>
+        </div>
+      </dl>
+      <p className="season-insights-note">
+        {hasMatches
+          ? 'The unbeaten run counts back from the latest result.'
+          : 'The numbers start at the first whistle.'}
       </p>
     </aside>
   )
@@ -617,7 +672,10 @@ export default function MatchesPage() {
 
             <div className="match-archive-aside">
               <ScorerLeaderboard matches={seasonMatches} />
-              <RecentForm matches={seasonMatches} />
+              <div className="match-aside-details">
+                <RecentForm matches={seasonMatches} />
+                <SeasonInsights matches={seasonMatches} />
+              </div>
             </div>
           </div>
 
