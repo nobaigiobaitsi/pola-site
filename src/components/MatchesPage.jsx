@@ -14,6 +14,31 @@ function sortMatches(matches) {
   )
 }
 
+function groupMatchesByTournament(matches) {
+  const tournaments = new Map()
+
+  // Visiting the newest matches first also orders tournaments by their latest result.
+  for (const match of sortMatches(matches)) {
+    const competition = match.competition?.trim() || 'Other matches'
+    const season = match.season?.trim() || ''
+    const id = JSON.stringify([competition, season])
+
+    if (!tournaments.has(id)) {
+      tournaments.set(id, {
+        id,
+        label: season && !competition.includes(season)
+          ? `${competition} ${season}`
+          : competition,
+        matches: [],
+      })
+    }
+
+    tournaments.get(id).matches.push(match)
+  }
+
+  return [...tournaments.values()]
+}
+
 function formatMatchDate(value) {
   if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return null
 
@@ -247,12 +272,9 @@ const filters = [
   { value: 'L', label: 'Losses' },
 ]
 
-function ScorerLeaderboard({ matches }) {
+function ScorerLeaderboard({ matches, tournamentLabel }) {
   const scorers = getScorerLeaderboard(matches)
   const leaders = scorers.filter((scorer) => scorer.rank === 1)
-  const singleSeason =
-    matches.length > 0 &&
-    matches.every((match) => match.season === matches[0].season)
 
   return (
     <aside className="scoring-card" aria-labelledby="scorers-heading">
@@ -318,10 +340,7 @@ function ScorerLeaderboard({ matches }) {
       )}
 
       <p className="scoring-card-footnote">
-        P.OLA goals ·{' '}
-        {singleSeason && matches[0].season
-          ? matches[0].season
-          : 'All seasons'}
+        P.OLA goals · {tournamentLabel || 'Match archive'}
       </p>
     </aside>
   )
@@ -377,7 +396,7 @@ function RecentForm({ matches }) {
   )
 }
 
-function SeasonInsights({ matches }) {
+function TournamentInsights({ matches }) {
   const stats = getMatchStats(matches)
   const hasMatches = stats.played > 0
   const difference = stats.goalDifference > 0
@@ -386,7 +405,7 @@ function SeasonInsights({ matches }) {
 
   return (
     <aside className="season-insights" aria-labelledby="insights-heading">
-      <p className="eyebrow">Season totals</p>
+      <p className="eyebrow">Tournament totals</p>
       <h2 id="insights-heading">Beyond the score.</h2>
       <dl className="season-metrics">
         <div>
@@ -424,25 +443,28 @@ export default function MatchesPage() {
   const [preview, setPreview] = useState(false)
   const [outcome, setOutcome] = useState('all')
   const [query, setQuery] = useState('')
-  const [season, setSeason] = useState('all')
+  const [selectedTournamentId, setSelectedTournamentId] = useState(null)
 
   const archive = sortMatches(preview ? demoMatches : matches)
-  const seasons = [
-    ...new Set(archive.map((match) => match.season || 'Unspecified season')),
-  ]
-  const seasonMatches = season === 'all'
-    ? archive
-    : archive.filter(
-        (match) => (match.season || 'Unspecified season') === season
-      )
-  const visibleMatches = filterMatches(seasonMatches, outcome, query)
-  const stats = getMatchStats(seasonMatches)
+  const tournaments = groupMatchesByTournament(archive)
+  const selectedTournament = tournaments.find(
+    (tournament) => tournament.id === selectedTournamentId
+  ) || tournaments[0]
+  const tournamentMatches = selectedTournament?.matches || []
+  const visibleMatches = filterMatches(tournamentMatches, outcome, query)
+  const stats = getMatchStats(tournamentMatches)
+
+  function selectTournament(id) {
+    setSelectedTournamentId(id)
+    setOutcome('all')
+    setQuery('')
+  }
 
   function togglePreview() {
     setPreview(!preview)
     setOutcome('all')
     setQuery('')
-    setSeason('all')
+    setSelectedTournamentId(null)
   }
 
   function resetFilters() {
@@ -510,11 +532,55 @@ export default function MatchesPage() {
         </div>
       )}
 
+      {tournaments.length > 0 && (
+        <section className="tournament-browser" aria-labelledby="tournaments-heading">
+          <div className="container">
+            <div className="tournament-browser-heading">
+              <div>
+                <p className="eyebrow">One campaign at a time</p>
+                <h2 id="tournaments-heading">Tournament archive.</h2>
+              </div>
+              <p>Pick a tournament to revisit its matches.</p>
+            </div>
+            <div
+              className="tournament-options"
+              role="group"
+              aria-label="Choose a tournament"
+            >
+              {tournaments.map((tournament) => {
+                const selected = tournament.id === selectedTournament?.id
+
+                return (
+                  <button
+                    className={`tournament-option${selected ? ' active' : ''}`}
+                    type="button"
+                    key={tournament.id}
+                    aria-pressed={selected}
+                    aria-controls="tournament-matches"
+                    onClick={() => selectTournament(tournament.id)}
+                  >
+                    <strong>{tournament.label}</strong>
+                    <span className="tournament-option-count">
+                      {tournament.matches.length}{' '}
+                      {tournament.matches.length === 1 ? 'match' : 'matches'}
+                    </span>
+                    <span className="tournament-option-action">
+                      {selected ? 'Viewing' : 'View results'}
+                      <span aria-hidden="true">{selected ? '✓' : '↗'}</span>
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section
         className="matches-stats"
         aria-label={preview
           ? 'Sample match statistics'
-          : 'Recorded match statistics'}
+          : `Match statistics for ${selectedTournament?.label || 'the match archive'}`}
       >
         <div className="container matches-stats-grid">
           <div>
@@ -549,7 +615,9 @@ export default function MatchesPage() {
                   <p className="eyebrow">
                     Results &amp; questionable analysis
                   </p>
-                  <h2>The paper trail.</h2>
+                  <h2 aria-live="polite">
+                    {selectedTournament?.label || 'The paper trail.'}
+                  </h2>
                 </div>
                 <span className="match-count" aria-live="polite">
                   {visibleMatches.length}{' '}
@@ -600,25 +668,11 @@ export default function MatchesPage() {
                       />
                     </label>
 
-                    {seasons.length > 1 && (
-                      <label className="season-filter">
-                        <span className="sr-only">Season</span>
-                        <select
-                          value={season}
-                          onChange={(event) => setSeason(event.target.value)}
-                        >
-                          <option value="all">All seasons</option>
-                          {seasons.map((value) => (
-                            <option key={value} value={value}>{value}</option>
-                          ))}
-                        </select>
-                      </label>
-                    )}
                   </div>
                 </div>
               )}
 
-              <div className="match-card-list">
+              <div className="match-card-list" id="tournament-matches">
                 {visibleMatches.map((match) => (
                   <MatchCard key={match.id} match={match} />
                 ))}
@@ -671,10 +725,13 @@ export default function MatchesPage() {
             </div>
 
             <div className="match-archive-aside">
-              <ScorerLeaderboard matches={seasonMatches} />
+              <ScorerLeaderboard
+                matches={tournamentMatches}
+                tournamentLabel={selectedTournament?.label}
+              />
               <div className="match-aside-details">
-                <RecentForm matches={seasonMatches} />
-                <SeasonInsights matches={seasonMatches} />
+                <RecentForm matches={tournamentMatches} />
+                <TournamentInsights matches={tournamentMatches} />
               </div>
             </div>
           </div>
