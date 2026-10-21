@@ -64,6 +64,38 @@ export const matches = [
     ownGoals: 1, // Opposition own goals scored into their own net
     note: 'They scored at both ends. We appreciate the flexibility.',
     },
+    {
+    id: 'match-004',
+        date: '2026-10-13',
+        season: '2026/27',
+        competition: 'Winter Tournament 2026/27',
+        opponent: 'Selecao',
+        goalsFor: 4, //P.OLA's goals 
+        goalsAgainst: 4, //Opposition goals
+        scorers: [
+            { name: 'Giannis Georgiadis', goals: 3 },
+            { name: 'Giorgos Ageridis', goals: 1 },
+        ],
+    ownGoals: 0, // Opposition own goals scored into their own net
+    note: 'They brought the Brazilian name. Neither side brought a defence.',
+    },
+    {
+    id: 'match-005',
+        date: '2026-10-20',
+        season: '2026/27',
+        competition: 'Winter Tournament 2026/27',
+        opponent: 'Άτυχοι',
+        goalsFor: 4, //P.OLA's goals 
+        goalsAgainst: 2, //Opposition goals
+        scorers: [
+            { name: 'Giannis Athanasiou', goals: 1 },
+            { name: 'Giorgos Ageridis', goals: 1 },
+            { name: 'Panagiotis Paisios', goals: 1 },
+            { name: 'Alex Solis', goals: 1 },
+        ],
+    ownGoals: 0, // Opposition own goals scored into their own net
+    note: 'Six last time, four this time. Returning customers get a discount.',
+    },
 ]
 
 export const demoMatches = []
